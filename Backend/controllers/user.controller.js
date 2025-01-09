@@ -8,13 +8,14 @@ module.exports.registerUser = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
+  console.log(req.body);
 
-  const { fullname, lastname, email, password } = req.body;
+  const { fullname, email, password } = req.body;
 
   const hashPassword = await userModel.hashPassword(password);
   const user = await userService.createUser({
-    firstname:fullname.firstname,
-    lastname:fullname.lastname,
+    firstname: fullname.firstname,
+    lastname: fullname.lastname,
     email,
     password: hashPassword,
   });
