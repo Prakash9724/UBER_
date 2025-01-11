@@ -34,16 +34,8 @@ user (object) :
 -firstname' (string): User's first name (minimum 3 characters). - 'lastname' (string): User's last name (minimum 3 characters).
 
 - 'email' (string): User's email address (must be a valid email).
--'password' (string): User's password (minimum 6 characters).
--`token' (String): JWT Token
-
-
-
-
-
-
-
-
+  -'password' (string): User's password (minimum 6 characters).
+  -`token' (String): JWT Token
 
 # User Registration Endpoint Documentation
 
@@ -72,5 +64,97 @@ user (object) :
 -firstname' (string): User's first name (minimum 3 characters). - 'lastname' (string): User's last name (minimum 3 characters).
 
 - 'email' (string): User's email address (must be a valid email).
--'password' (string): User's password (minimum 6 characters).
--`token' (String): JWT Token
+  -'password' (string): User's password (minimum 6 characters).
+  -`token' (String): JWT Token
+
+
+
+# User Registration Endpoint Documentation
+
+## Endpoint: `/user/register`
+
+### Method: POST
+
+### Description:
+This endpoint is used to register a new user. It validates the input data, hashes the password, creates a new user in the database, and returns an authentication token along with the user details.
+
+### Required Data:
+The request body must contain the following fields:
+- `fullname`: An object containing:
+    - `firstname`: A string with a minimum length of 3 characters.
+    - `lastname`: A string (optional).
+- `email`: A valid email address.
+- `password`: A string with a minimum length of 6 characters.
+
+#### Example Request Body:
+```json
+{
+    "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "password": "password123"
+}
+
+
+
+
+# User Profile Endpoint Documentation
+
+## Endpoint: `/user/profile`
+
+### Method: GET
+
+### Description:
+This endpoint is used to retrieve the user's profile information. It returns the user's details in the response body.
+
+### Required Data:
+No request body is required for this endpoint.
+
+### Response:
+
+- Status Code: 200 (OK)
+- Response Body:
+  - `user`: User object containing user details.
+
+#### Example Response:
+
+{
+  "_id": "user_id_here",
+  "fullname": {
+    "firstname": "John",
+    "lastname": "Doe"
+  },
+  "email": "john.doe@example.com"
+}
+
+
+# User Logout Endpoint Documentation
+
+## Endpoint: `/user/logout`
+
+### Method: GET
+
+### Description:
+This endpoint is used to log out the user. It clears the authentication token from the cookies and adds it to the blacklist.
+
+### Required Data:
+No request body is required for this endpoint.
+
+### Response:
+
+- Status Code: 200 (OK)
+- Response Body:
+  - `message`: A success message indicating that the user has been logged out.
+
+#### Example Response:
+
+{
+  "message": "Logged out"
+}
+
+
+
+
+
