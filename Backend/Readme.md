@@ -99,7 +99,6 @@ The request body must contain the following fields:
 
 
 
-
 # User Profile Endpoint Documentation
 
 ## Endpoint: `/user/profile`
@@ -107,7 +106,7 @@ The request body must contain the following fields:
 ### Method: GET
 
 ### Description:
-This endpoint is used to retrieve the user's profile information. It returns the user's details in the response body.
+This endpoint retrieves the user's profile information and returns the user's details in the response body.
 
 ### Required Data:
 No request body is required for this endpoint.
@@ -119,7 +118,7 @@ No request body is required for this endpoint.
   - `user`: User object containing user details.
 
 #### Example Response:
-
+```json
 {
   "_id": "user_id_here",
   "fullname": {
@@ -128,7 +127,7 @@ No request body is required for this endpoint.
   },
   "email": "john.doe@example.com"
 }
-
+```
 
 # User Logout Endpoint Documentation
 
@@ -137,7 +136,7 @@ No request body is required for this endpoint.
 ### Method: GET
 
 ### Description:
-This endpoint is used to log out the user. It clears the authentication token from the cookies and adds it to the blacklist.
+This endpoint logs out the user by clearing the authentication token from the cookies and adding it to the blacklist.
 
 ### Required Data:
 No request body is required for this endpoint.
@@ -149,7 +148,7 @@ No request body is required for this endpoint.
   - `message`: A success message indicating that the user has been logged out.
 
 #### Example Response:
-
+```json
 {
   "message": "Logged out"
 }
