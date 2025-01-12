@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const jwt = require('jasonwebtoken');
+const jwt = require('jsonwebtoken');
 
 const captainSchema = new mongoose.Schema({
     fullname:{
@@ -19,7 +19,7 @@ const captainSchema = new mongoose.Schema({
         required: true,
         unique: true,
         lowercase: true,
-        match:[/^\S+@\S+\.\S+s/,"Please enter a valid email address"]
+        match: [ /^\S+@\S+\.\S+$/, 'Please enter a valid email' ]
     },
     password:{
         type: String,
@@ -52,10 +52,10 @@ const captainSchema = new mongoose.Schema({
             required: true,
             min: [1,"Capacity must be at least 1"],
         },
-        type:{
+        vehicleType:{
             type: String,
             required: true,
-            enum: ["Car", "motorcycle", "auto"],
+            enum: ["car", "motorcycle", "auto"],
         }
     },
     location:{
@@ -68,17 +68,19 @@ const captainSchema = new mongoose.Schema({
     }
 })
 
-captainSchema.method.generateAuthToken = function (req, res) {
-    const token  = jwt.sign({_id:this._id},process.env.JWT_SECRET,{expiresIn:'24h'});
+captainSchema.methods.generateAuthToken = function () {
+    const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET, { expiresIn: '24h' });
     return token;
-};
+}
 
 captainSchema.method.comparePassword = async function (password) {
         return await bcrypt.compare(password,this.password);
 }
 
-captainSchema.static.hashPassword = async function (password) {
+captainSchema.statics.hashPassword = async function (password) {
     return await bcrypt.hash(password,10);
 }
 
-const captainModel = module.exports('captain',captainSchema);
+
+const captainModel = mongoose.model('captain',captainSchema);
+module.exports = captainModel;

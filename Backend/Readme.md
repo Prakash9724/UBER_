@@ -157,3 +157,95 @@ No request body is required for this endpoint.
 
 
 
+
+# Captain Registration Endpoint Documentation
+
+## Endpoint: `/register`
+
+### Method: POST
+
+### Description:
+This endpoint is used to register a new captain. It validates the input data, hashes the password, creates a new captain in the database, and returns an authentication token along with the captain details.
+
+
+### Required Data:
+
+The request body must contain the following fields:
+
+- `fullname`: An object containing the captain's name details:
+
+  - `firstname` (required): Captain's first name (minimum 3 characters long).
+  - `lastname` (optional): Captain's last name.
+  
+- `email` (required): Captain's email address (must be a valid email format).
+
+- `password` (required): Captain's password (minimum 6 characters long).
+
+- `vehicle`: An object containing vehicle details:
+
+  - `color` (required): Vehicle color (minimum 3 characters long).
+  
+  - `plate` (required): Vehicle plate number (minimum 6 characters long, must be unique).
+  
+  - `capacity` (required): Vehicle capacity (must be at least 1).
+  
+  - `vehicleType` (required): Type of vehicle (options: "car", "motorcycle", "auto").
+  
+### Request Body Example:
+```json
+{
+    "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "password": "password123",
+    "vehicle": {
+        "color": "red",
+        "plate": "ABC123",
+        "capacity": 4,
+        "vehicleType": "car"
+    }
+}
+```
+
+### Response:
+
+- **Status Code**: 201 (Created)
+
+- **Response Body**:
+
+  - `token`: JWT token for authentication.
+  
+  - `user`: Captain object containing captain details.
+  
+#### Example Response:
+```json
+{
+  "token": "your_jwt_token_here",
+  "user": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "vehicle": {
+      "color": "red",
+      "plate": "ABC123",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+}
+```
+
+### Error Responses:
+
+- **400 Bad Request**: If required fields are missing or validation fails.
+
+  - **Response Body**:
+  ```json
+  {
+    "error": "All fields are required"
+  }
+  ```
