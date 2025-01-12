@@ -205,6 +205,7 @@ The request body must contain the following fields:
 }
 ```
 
+
 ### ❌ Error Responses:
 - **400 Bad Request**: If required fields are missing or validation fails.
 - **401 Unauthorized**: If the email or password is invalid.
