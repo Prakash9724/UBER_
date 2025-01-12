@@ -1,0 +1,84 @@
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const jwt = require('jasonwebtoken');
+
+const captainSchema = new mongoose.Schema({
+    fullname:{
+        firstname:{
+            type: String,
+            required: true,
+            minlength: [3, "First name must be at least 3 characters long"],
+        },
+        lastname:{
+            type: String,
+            minlength: [3, "Last name must be at least 3 characters long"],
+        }
+    
+    },email:{
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        match:[/^\S+@\S+\.\S+s/,"Please enter a valid email address"]
+    },
+    password:{
+        type: String,
+        required: true,
+        minlength: [6, "Password must be at least 6 characters long"],
+        select: false,
+    },
+    soketId: {
+        type: String,
+    },
+    status: {
+        type: String,
+        default: "inactive",
+        enum: ["active", "inactive"],
+    },
+    vehicle:{
+        color:{
+            type: String,
+            required: true,
+            minlength: [3, "Color must be at least 3 characters long"],
+        },
+        plate:{
+            type: String,
+            required: true,
+            minlength: [6, "Plate must be at least 6 characters long"],
+            unique: true,
+        },
+        capacity:{
+            type: Number,
+            required: true,
+            min: [1,"Capacity must be at least 1"],
+        },
+        type:{
+            type: String,
+            required: true,
+            enum: ["Car", "motorcycle", "auto"],
+        }
+    },
+    location:{
+        lat:{
+            type: Number,
+        },
+        lng:{
+            type: Number,
+        }
+    }
+})
+
+captainSchema.method.generateAuthToken = function (req, res) {
+    const token  = jwt.sign({_id:this._id},process.env.JWT_SECRET,{expiresIn:'24h'});
+    return token;
+};
+
+captainSchema.method.comparePassword = async function (password) {
+        return await bcrypt.compare(password,this.password);
+}
+
+captainSchema.static.hashPassword = async function (password) {
+    return await bcrypt.hash(password,10);
+}
+
+const captainModel = module.exports('captain',captainSchema);
