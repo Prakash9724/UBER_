@@ -11,7 +11,7 @@ const CaptainSingup = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     setUserData({
-      username: {
+      fullName: {
         fisrtname: fisrtname,
         lastname: lastName,
       },
@@ -34,7 +34,7 @@ const CaptainSingup = () => {
           alt=""
         />
         <form action="" onSubmit={submitHandler}>
-          <h3 className="text-lg font-medium mb-2">What's your Name</h3>
+          <h3 className="text-lg font-medium mb-2">What's your Name Captain</h3>
           <div className="flex w-full gap-4 mb-7">
             <input
               type="text"
@@ -59,7 +59,7 @@ const CaptainSingup = () => {
             />
           </div>
 
-          <h3 className="text-lg font-medium mb-2">What's your Email</h3>
+          <h3 className="text-lg font-medium mb-2">What's your Email Captain</h3>
           <input
             type="email"
             required
