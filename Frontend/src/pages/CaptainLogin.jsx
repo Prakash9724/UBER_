@@ -58,7 +58,7 @@ const CaptainLogin = () => {
 
         <p className="text-sm mt-4 text-center font-medium">
           Join a fleet?{" "}
-          <Link to={"/singup"} className="text-blue-700">
+          <Link to={"/captain-singup"} className="text-blue-700">
             Register as a Captain
           </Link>{" "}
         </p>
