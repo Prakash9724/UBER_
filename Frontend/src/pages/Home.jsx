@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const Home = () => {
   return (
@@ -7,7 +8,7 @@ const Home = () => {
         <img className='w-16  ml-7' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Uber_logo_2018.svg/2560px-Uber_logo_2018.svg.png" alt="" />
         <div className='bg-white pb-7 w-full px-4 py-4'>
             <h2 className='text-3xl font-bold '>Get Started With Uber</h2>
-            <button className='bg-black text-xl/2 text-white rounded-md mt-5 p-2 w-full'>Continue</button>
+            <Link to={'/login'} className=' flex justify-center items-center bg-black text-xl/2 text-white rounded-md mt-5 p-2 w-full'>Continue</Link>
         </div>
       </div>
     </div>
