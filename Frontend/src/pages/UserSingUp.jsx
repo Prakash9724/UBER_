@@ -1,27 +1,44 @@
 import React from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState ,useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import {UserDataContext} from "../context/UserContext";
 
 const UserSingUp = () => {
-  const [fisrtname, setFisrtName] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
   const [userData, setUserData] = useState({});
+  
+  const navigate = useNavigate();
 
-  const submitHandler = (e) => {
+
+  const {user, setUser} = useContext(UserDataContext);
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    setUserData({
-      fullName: {
-        fisrtname: fisrtname,
+    const newUser = {
+      fullname: {
+        firstname: firstName,
         lastname: lastName,
       },
       email: email,
       password: password,
-    });
-    console.log(userData);
+    }
+
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser)
+
+    console.log(response);
+    
+    if(response.status === 201){
+      const data = response.data
+      setUser(data.user);
+      navigate('/home');
+    }
+
     setLastName("");
-    setFisrtName("");
+    setFirstName("");
     setemail("");
     setPassword("");
   };
@@ -34,15 +51,15 @@ const UserSingUp = () => {
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Uber_logo_2018.svg/2560px-Uber_logo_2018.svg.png"
           alt=""
         />
-        <form action="" onSubmit={submitHandler}>
+        <form action="" onSubmit={(e)=>{submitHandler(e)}}>
           <h3 className="text-lg font-medium mb-2">What's your Name</h3>
           <div className="flex w-full gap-4 mb-7">
             <input
               type="text"
               required
-              value={fisrtname}
+              value={firstName}
               onChange={(e) => {
-                setFisrtName(e.target.value);
+                setFirstName(e.target.value);
               }}
               placeholder="First name"
               className="w-1/2  p-2 bg-[#EEEEEE] text-lg rounded placeholder:text-base"
@@ -52,10 +69,10 @@ const UserSingUp = () => {
               type="text"
               placeholder="Last name"
               required
+              value={lastName}
               onChange={(e) => {
                 setLastName(e.target.value);
               }}
-              value={lastName}
               className="w-1/2 p-2 bg-[#EEEEEE] rounded text-lg placeholder:text-base"
             />
           </div>
@@ -83,7 +100,7 @@ const UserSingUp = () => {
             className="w-full p-2 bg-[#EEEEEE] text-lg placeholder:text-base rounded mb-4"
           />
           <button className="bg-black text-white py-2 px-4 w-full rounded mt-4">
-            Login
+           Create Account 
           </button>
         </form>
 
