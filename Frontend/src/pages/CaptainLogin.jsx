@@ -5,32 +5,34 @@ import { CaptainDataContext } from '../context/CaptainContext';
 
 const CaptainLogin = () => {
 
-  const [email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
- const [captainData, setCaptainData] = useState({});
+  const [ email, setEmail ] = useState('')
+  const [ password, setPassword ] = useState('')
 
-  const navigate = useNavigate();
+  const { captain, setCaptain } = React.useContext(CaptainDataContext)
+  const navigate = useNavigate()
 
-  const {captain ,setCaptain} = useContext(CaptainDataContext)
 
-  const submitHandler =async (e) => {
-    e.preventDefault();
-    const captainData = {
-      email:email,
-      password:Password
-    }
-
-    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captain/login`,captainData);
   
-    if(response.status === 200){
-      const data = response.data
-      setCaptain(data.captain);
-      localStorage.setItem("token", data.token);
-      navigate('/captain-home');
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const captain = {
+      email: email,
+      password
     }
 
-    setEmail("");
-    setPassword("");    
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captain/login`, captain)
+
+    if (response.status === 200) {
+      const data = response.data
+
+      setCaptain(data.captain)
+      localStorage.setItem('token', data.token)
+      navigate('/captain-home')
+
+    }
+
+    setEmail('')
+    setPassword('')
   }
 
 
@@ -59,7 +61,7 @@ const CaptainLogin = () => {
           <input
             type="password"
             placeholder="Password"
-            value={Password}
+            value={password}
             onChange={(e)=>{
               setPassword(e.target.value);
             }}

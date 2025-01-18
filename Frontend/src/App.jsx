@@ -37,10 +37,10 @@ const App = () => {
         <Route
           path="/captain-home"
           element={
-            <CaptainHome/>
-            // <CaptainProtectedWrapper>
-            //   <CaptainHome />
-            // </CaptainProtectedWrapper>
+            
+            <CaptainProtectedWrapper>
+              <CaptainHome />
+            </CaptainProtectedWrapper>
           }
         />
       </Routes>

@@ -10,7 +10,7 @@ const UserContext = ({children}) => {
             lastname: "",
         },
         email: "",
-        password: "",
+        
     })
 
   return (

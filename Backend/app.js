@@ -9,10 +9,17 @@ connectToDb();
 const userRoutes = require("./routes/user.routes");
 const captainRoutes = require("./routes/captain.routes");
 
-app.use(cookieParser());
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:5173', // Aapka frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true, // Agar aap cookies ya authorization headers use kar rahe hain
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser()); 
+
 
 app.use("/users", userRoutes);
 app.use("/captain",captainRoutes);
