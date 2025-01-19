@@ -6,6 +6,7 @@ import "remixicon/fonts/remixicon.css";
 import LocationSearchPanel from "../components/LocationSearchPanel";
 import VehiclePanel from "../components/VehiclePanel";
 import ConfirmedRide from "../components/ConfirmedRide";
+import LookingForDriver from "../components/LookingForDriver";
 
 const Home = () => {
   const [pickup, setPickup] = useState("");
@@ -161,17 +162,26 @@ const Home = () => {
       </div>
       <div
         ref={vehiclePanelRef}
-        className="fixed w-full z-10 bottom-0 bg-white px-3 py-10 pt-14  translate-y-full"
+        className="fixed w-full z-10 bottom-0 bg-white px-3 py-6 pt-12  translate-y-full"
       >
         <VehiclePanel setConfirmRidePanel={setConfirmRidePanel} setVehiclePanel={setVehiclePanel} />
       </div>
 
       <div
         ref={confirmRidePanelRef}
-        className="fixed w-full z-10 bottom-0 bg-white px-3 py-10 pt-14  translate-y-full"
+        className="fixed w-full z-10 bottom-0 bg-white px-3 py-6 pt-12  translate-y-full"
       >
-        <ConfirmedRide  />
+        <ConfirmedRide   />
       </div>
+
+      
+      <div
+        
+        className="fixed w-full z-10 bottom-0 bg-white px-3 py-6 pt-12  translate-y-full"
+      >
+        <LookingForDriver />
+      </div>
+
     </div>
   );
 };
