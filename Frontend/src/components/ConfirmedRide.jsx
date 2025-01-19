@@ -7,7 +7,7 @@ const ConfirmedRide = (props) => {
       <h5
         className="p-1 text-center absolute top-0 w-[93%] "
         onClick={() => {
-          props.setVehiclePanel(false);
+          props.setConfirmRidePanel(false);
         }}
       >
         <i className="text-3xl text-gray-400 ri-arrow-down-wide-line"></i>
@@ -31,7 +31,7 @@ const ConfirmedRide = (props) => {
             </div>
           </div>
           <div className="flex items-center gap-5 p-2 border-b-2">
-          <i className="ri-map-pin-2-fill"></i>
+            <i className="ri-map-pin-2-fill"></i>
             <div>
               <h3 className="text-lg font-medium">562/11-A</h3>
               <p className="text-sm -mt-1 text-gray-600">
@@ -47,7 +47,13 @@ const ConfirmedRide = (props) => {
             </div>
           </div>
         </div>
-        <button className="bg-green-400 mt-5 text-white font-semibold p-2 rounded-lg w-full">
+        <button
+          onClick={() => {
+            props.setVehicleFound(true)
+            props.setConfirmRidePanel(false);
+          }}
+          className="bg-green-400 mt-5 text-white font-semibold p-2 rounded-lg w-full"
+        >
           Confirm
         </button>
       </div>
