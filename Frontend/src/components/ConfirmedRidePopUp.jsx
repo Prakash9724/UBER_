@@ -1,8 +1,8 @@
 import React from 'react'
 
-const RidePopUp = (props) => {
+const ConfirmedRidePopUp = (props) => {
   return (
-    <div>
+    <div className='h-screen'>
       <h5
         className="p-1 text-center absolute top-0 w-[93%] "
         onClick={() => {
@@ -11,7 +11,7 @@ const RidePopUp = (props) => {
       >
         <i className="text-3xl text-gray-400 ri-arrow-down-wide-line"></i>
       </h5>
-      <h3 className="text-2xl font-semibold">New Ride Available</h3>
+      <h3 className="text-2xl font-semibold">Confirm This Ride to Start</h3>
 
         <div className='flex items-center justify-between bg-yellow-300 p-2 rounded-lg mt-4'>
             <div className='flex items-center gap-3 '>
@@ -53,24 +53,25 @@ const RidePopUp = (props) => {
         </div>
         <button
           onClick={() => {
-           props.setConfirmRidePopPanel(true)
+           
           }}
-          className="bg-green-400 mt-5 text-white font-semibold p-2 rounded-lg w-full"
+          className="bg-green-600 mt-5 text-white font-semibold p-2 rounded-lg w-full"
         >
-          Accept
+          Confirm
         </button>
 
         <button
           onClick={() => {
             props.setRidePopPanel(false);
+            props.setConfirmRidePopPanel(false);
         }}
-          className="bg-gray-300  text-gray-700 font-semibold p-2 rounded-lg w-full"
+          className="bg-red-500  text-white font-semibold p-2 rounded-lg w-full"
         >
-          Ignore
+          Cancle
         </button>
       </div>
     </div>
   )
 }
 
-export default RidePopUp
+export default ConfirmedRidePopUp
