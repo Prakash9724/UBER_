@@ -72,7 +72,7 @@ useGSAP(
         className="fixed w-full h-screen z-10 bottom-0 bg-white translate-y-full px-3 py-6 pt-12"
       >
         {" "}
-        <FinishRide />
+        <FinishRide setFinishRidePanel={setFinishRidePanel} />
       </div>
     </div>
   );

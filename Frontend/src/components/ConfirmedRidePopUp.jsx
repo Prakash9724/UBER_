@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const ConfirmedRidePopUp = (props) => {
@@ -78,7 +78,7 @@ const ConfirmedRidePopUp = (props) => {
 
             <Link
               to={"/captain-riding"}
-              className="flex justify-center  bg-green-600 mt-5 mb-2 text-white font-semibold p-3 rounded-lg w-full"
+              className="flex justify-center text-lg  bg-green-600 mt-5 mb-2 text-white font-semibold p-3 rounded-lg w-full"
             >
               Confirm
             </Link>
@@ -88,7 +88,7 @@ const ConfirmedRidePopUp = (props) => {
                 props.setRidePopPanel(false);
                 props.setConfirmRidePopPanel(false);
               }}
-              className="bg-red-500  text-white font-semibold p-3 rounded-lg w-full"
+              className="bg-red-500  text-lg text-white font-semibold p-3 rounded-lg w-full"
             >
               Cancle
             </button>

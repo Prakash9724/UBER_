@@ -7,14 +7,14 @@ const FinishRide = (props) => {
     <h5
       className="p-1 text-center absolute top-0 w-[93%] "
       onClick={() => {
-        props.setRidePopPanel(false);
+        props.setFinishRidePanel(false);
       }}
     >
       <i className="text-3xl text-gray-400 ri-arrow-down-wide-line"></i>
     </h5>
     <h3 className="text-2xl font-semibold">Finish This Ride </h3>
 
-      <div className='flex items-center justify-between bg-yellow-300 p-2 rounded-lg mt-4'>
+      <div className='flex items-center justify-between border-2  border-yellow-300 p-3 rounded-lg mt-4'>
           <div className='flex items-center gap-3 '>
               <img className='h-12 w-12 rounded-full object-cover' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFtl_Hwyux7iRCwvxukpwu7oNZGTubprxgkrqTvYNNgVJv9Lhp8GA7GZbXg9z5dpQBFXc&usqp=CAU" alt="" />
               <h2 className='text-lg font-medium'>Prakash Patel</h2>
@@ -55,11 +55,13 @@ const FinishRide = (props) => {
 
 
       <div className='mt-6 w-full'>
-      <Link to={'/captain-riding'}
-        className="flex justify-center  bg-green-600 mt-5 mb-2 text-white font-semibold p-3 rounded-lg w-full"
+      <Link to={'/captain-home'}
+        className="flex text-lg justify-center  bg-green-600 mt-5 mb-2 text-white font-semibold p-3 rounded-lg w-full"
       >
-        Complete Ride
+        Complete This Ride
       </Link>
+
+      <p className=' text-xs p-3 mt-10'>click on the finish ride button if you completed the payment.</p>
       </div>
     </div>
   </div>
